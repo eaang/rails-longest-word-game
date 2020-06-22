@@ -3,14 +3,14 @@
   <% if @from_grid %>
     <% if @valid_word %>
       <div class="message"><strong>Congratulations!</strong> <%= @word %> is a valid English word!</div>
-      <div class="word-score"><strong>Word Score:</strong> <%= @score %></div>
+      <div class="word"><strong>Word Score:</strong> <%= @score %></div>
     <% else %>
       <div class="message">Sorry but <strong><%= @word %></strong> does not seem to be a valid English word...</div>
     <% end %>
   <% else %>
     <div class="message">Sorry but <strong><%= @word %></strong> can't be built out of <%= @letters.join(', ') %></div>
   <% end %>
-  <div class="session"><strong>Session Score:</strong> <%= session[:total_score] %> </div>
+  <div class="session"><strong>Session Score:</strong></div>
 
 </div>
 

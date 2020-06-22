@@ -12,16 +12,10 @@ class GamesController < ApplicationController
   end
 
   def score
-    @word = params[:word].upcase
+    @word = params[:word]
     @letters = params[:letters].split(' ')
-    @from_grid = (@word.split('') - @letters).empty?
+    @from_grid = (@word.upcase.split('') - @letters).empty?
     @valid_word = check_dict(@word)
-    @score = compute_score(@word)
-    if session[:total_score].nil?
-      session[:total_score] = @score
-    else
-      session[:total_score] += @score
-    end
   end
 
   def check_dict(word)
@@ -31,12 +25,17 @@ class GamesController < ApplicationController
 
   def compute_score(word)
     values = {
-      /[AEIOULNRST]/ => 1, /[DG]/ => 2, /[BCMP]/ => 3,
-      /[FHVWY]/ => 4, /[K]/ => 5, /[JX]/ => 8, /[QZ]/ => 10
+      /[AEIOULNRST]/ => 1,
+      /[DG]/ => 2,
+      /[BCMP]/ => 3,
+      /[FHVWY]/ => 4,
+      /[K]/ => 5,
+      /[JX]/ => 8,
+      /[QZ]/ => 10
     }
     score = 0
     values.each do |letters, value|
-      score += (word.scan(letters).count * value)
+      word_score += (@word.scan(letters).count * value)
     end
     score
   end

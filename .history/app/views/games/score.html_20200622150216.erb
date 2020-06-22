@@ -1,0 +1,17 @@
+<h1>Result</h1>
+<div class="results">
+  <% if @from_grid %>
+    <% if @valid_word %>
+      <strong>Congratulations!</strong> <%= @word %> is a valid English word!
+      <strong>Word Score:</strong> <%= @score %>
+    <% else %>
+      Sorry but <strong><%= @word %></strong> does not seem to be a valid English word...
+    <% end %>
+  <% else %>
+    Sorry but <strong><%= @word %></strong> can't be built out of <%= @letters.join(', ') %>
+  <% end %>
+  <strong>Session Score:</strong>
+</div>
+
+
+<p><%= link_to "Try again?", new_path %></p>

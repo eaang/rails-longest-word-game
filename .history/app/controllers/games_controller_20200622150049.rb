@@ -17,11 +17,6 @@ class GamesController < ApplicationController
     @from_grid = (@word.split('') - @letters).empty?
     @valid_word = check_dict(@word)
     @score = compute_score(@word)
-    if session[:total_score].nil?
-      session[:total_score] = @score
-    else
-      session[:total_score] += @score
-    end
   end
 
   def check_dict(word)

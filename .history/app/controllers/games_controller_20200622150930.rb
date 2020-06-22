@@ -19,7 +19,7 @@ class GamesController < ApplicationController
     @score = compute_score(@word)
     if session[:total_score].nil?
       session[:total_score] = @score
-    else
+    else      
       session[:total_score] += @score
     end
   end
